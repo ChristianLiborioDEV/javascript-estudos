@@ -1,4 +1,6 @@
-// livro.js
+/*5 - Crie um objeto livro com as seguintes propriedades: título, autor, ano de publicação, gênero, idade de publicação. 
+Depois altere o gênero do livro para "Aventura".*/
+
 const anoAtual = new Date().getFullYear();
 
 const livro = {
