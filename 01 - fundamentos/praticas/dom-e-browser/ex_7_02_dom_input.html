@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Básico</title>
+</head>
+<body>
+    <h1 id="titulo">Olá, mundo!</h1>
+    <input type="text" id="nomeInput" placeholder="Digite seu nome">
+    <button id="botaoSaudar">Saudar</button>
+    <p id="mensagem"></p>  
+
+    <script>
+        let entradaNome = document.getElementById("nomeInput");
+        let exibirMensagem = document.getElementById("mensagem");
+        let botao = document.getElementById("botaoSaudar");
+
+        botao.addEventListener("click", exibirTexto);
+
+        function exibirTexto(){
+            let nome = entradaNome.value;
+            if(nome.trim() === ""){
+                exibirMensagem.textContent = "Por favor, digite seu nome."
+            } else {
+                exibirMensagem.textContent = `Olá, ${nome}`
+            }
+                
+            }
+
+    </script>
+</body>
+</html>

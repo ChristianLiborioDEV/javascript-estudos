@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localizador de Estrangeiros</title>
+</head>
+<body>
+    <h1>Vamo ve se tu é br mesmo!</h1>
+    Digite sua nacionalidade: <input type="text" name="txtentrada" id="txtval">
+    <input type="button" value="veja" onclick="verificar()">
+    <div id="res"></div>
+
+    <script>
+        function verificar(){
+            var res = document.getElementById("res");
+            var pais = document.getElementById("txtval").value;
+            if( pais == "Brasil"){
+                res.innerHTML = `<p> Brasileiro </p>`
+            } else {
+                res.innerHTML = `<p> Gringo </p>`
+            }
+        }
+    </script>
+</body>
+</html>

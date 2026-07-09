@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM básico</title>
+</head>
+<body>
+    <div>
+        <P><input type="text" name="txtname" id="name" placeholder="Insira seu nome"></P>
+        <p><input type="email" name="txtemail" id="email" placeholder="Digite seu E-mail"></p>
+        <P><button id="bCadastrar">Cadastrar</button></P>
+    </div>
+    <div id="mensagem"></div>
+
+    <script>
+        let nomeUsuario = document.getElementById("name");
+        let emailusuario = document.getElementById("email");
+        let botao = document.getElementById("bCadastrar");
+        let res = document.getElementById("mensagem");
+        botao.addEventListener("click", verificar);
+
+
+        function verificar(){
+            if(nomeUsuario.value.trim().length >= 3){
+                if(emailusuario.value.includes("@")){
+                    res.textContent = `Cadastro realizado: [${nomeUsuario.value}] - [${emailusuario.value}]`;
+                } else {
+                    res.textContent = "Email inválido";
+                }
+            } else {
+                res.textContent = "Nome muito curto";
+            }
+            
+        }
+
+    </script>
+    
+</body>
+</html>
+
+
+/*Uma observação para o futuro: quando você tem múltiplas validações, 
+o padrão mais limpo é validar cada campo separadamente e sair cedo com return, 
+em vez de ifs aninhados:
+function verificar(){
+    if(nomeUsuario.value.trim().length < 3){
+        res.textContent = "Nome muito curto";
+        return;
+    }
+    if(!emailusuario.value.includes("@")){
+        res.textContent = "Email inválido";
+        return;
+    }
+    res.textContent = `Cadastro realizado: ${nomeUsuario.value} - ${emailusuario.value}`;
+}
+Menos aninhamento, mais fácil de ler. Guarda esse padrão. */

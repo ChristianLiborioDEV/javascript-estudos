@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom básico</title>
+    <style>
+    .escuro{
+        background-color: rgb(0, 0, 0);
+        padding: 200px;
+        width: 200px;
+        text-align: center;
+        color: white;
+      }
+
+
+    </style>
+    
+</head>
+<body>
+    <div id="divClass">
+        texto qualquer
+        
+    </div>
+    <p><button id="escuro">Modo Escuro</button>
+    <button id="clareou">Modo Claro</button></p>
+
+    <script>
+        let div = document.getElementById("divClass");
+        let botaoClaro = document.getElementById("clareou");
+        let botaoEscuro = document.getElementById("escuro");
+
+        botaoClaro.addEventListener("click", clarof);
+        botaoEscuro.addEventListener("click", escuroF);
+
+        function clarof(){
+            div.classList.remove("escuro");
+        }
+
+        function escuroF(){
+            div.classList.add("escuro");
+        }
+
+
+    </script>
+</body>
+</html>
+
+<!--javascriptbotao.addEventListener("click", function() {
+    div.classList.toggle("escuro");
+});
+Um botão só, sem precisar de dois. A cada clique ele alterna — se a classe está lá, remove; se não está, adiciona.
+Você trocaria os dois botões por um só chamado "Alternar Tema" por exemplo.
+-->

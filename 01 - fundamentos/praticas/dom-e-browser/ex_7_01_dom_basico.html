@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Básico</title>
+</head>
+<body>
+    <h1 id="titulo">Olá, mundo!</h1>
+    <button id="meuBotao">Clique Aqui</button>    
+
+    <script>
+        let titulo = document.getElementById("titulo");
+        let botao = document.getElementById("meuBotao");
+        botao.addEventListener("click", trocarTitulo);
+
+        function trocarTitulo(){
+            titulo.textContent = "JavaScript no Browser!";
+        }
+
+    </script>
+</body>
+</html>
+
+
+<!-- 1. Você usou onclick="trocarTitulo()" direto no HTML — funciona, mas o padrão moderno é separar o comportamento do HTML, adicionando o evento pelo JavaScript:
+javascriptbotao.addEventListener("click", trocarTitulo);
+Assim o HTML fica só com estrutura, e o JS cuida do comportamento.
+2. innerHTML funciona, mas para trocar só texto o correto é textContent — innerHTML interpreta tags HTML, o que pode abrir brechas de segurança em projetos reais.
+Reescreve usando addEventListener e textContent. -->

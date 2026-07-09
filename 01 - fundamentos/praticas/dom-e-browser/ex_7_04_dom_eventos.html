@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Básico</title>
+</head>
+<body>
+    <input type="text" id="tarefaInput" placeholder="Nova tarefa">
+    <button id="botaoAdicionar">Adicionar</button>
+    <ul id="listaTarefas"></ul>
+
+
+    <script>
+        let botao = document.getElementById("botaoAdicionar");
+        let lista = document.getElementById("listaTarefas");
+        let tarefa = document.getElementById("tarefaInput");
+        botao.addEventListener("click", addTarefa);
+        tarefa.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            addTarefa();
+         }
+        });
+
+        function addTarefa(){
+            let checkTarefa = tarefa.value;
+            if(checkTarefa.trim() !== ""){  
+                let item = document.createElement("li");
+                item.textContent = checkTarefa;
+
+                let botaoRemover = document.createElement("button");
+                botaoRemover.textContent = "✕";
+                botaoRemover.addEventListener("click", function() {
+                item.remove();
+            });
+
+                item.appendChild(botaoRemover);
+                lista.appendChild(item);
+                tarefa.value =""
+                tarefa.focus();
+            } 
+        }
+    </script>
+</body>
+</html>

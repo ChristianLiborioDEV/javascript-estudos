@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom básico</title>
+    <style>
+    div#fundoTela{
+        background-color: rgb(58, 58, 63);
+        padding: 200px;
+        width: 200px;
+        text-align: center;
+      }
+    </style>
+    
+</head>
+<body>
+    <div id="fundoTela">
+    </div>
+    <div>
+        <p>
+        <button id="cVermelho">Vermelho</button> 
+        <button id="cAzul">Azul</button> 
+        <button id="cVerde">Verde</button> 
+        <button id="cAleatorio">Aleatorio</button>
+        </p>
+
+    </div>
+
+    <script>
+        let div = document.getElementById("fundoTela")
+        let botaoVermelho = document.getElementById("cVermelho");
+        let botaoAzul = document.getElementById("cAzul");
+        let botaoVerde = document.getElementById("cVerde");
+        let botaoAleatorio = document.getElementById("cAleatorio");
+
+        botaoVermelho.addEventListener("click", red);
+        botaoAzul.addEventListener("click", blue);
+        botaoVerde.addEventListener("click", green);
+        botaoAleatorio.addEventListener("click", random);
+
+        function red(){
+            div.style.background = "red"
+        }
+
+        function blue(){
+            div.style.background = "blue"
+        }
+
+       function green(){
+            div.style.background = "green"
+        }
+
+        function random(){
+            let letras = "0123456789ABCDEF";
+            let cor = "#";
+            for (let i = 0; i < 6; i++) {
+            cor += letras[Math.floor(Math.random() * 16)];
+            }
+
+            div.style.background = cor;
+        }
+
+
+    </script>
+</body>
+</html>

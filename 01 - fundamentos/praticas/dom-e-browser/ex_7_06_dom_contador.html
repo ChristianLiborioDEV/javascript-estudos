@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Básico</title>
+</head>
+<body>
+    <div id="numero">0</div>
+    <p><button id="incrementar">+</button> <button id="decrementar">-</button> 
+        <button id="zerar">Zerar</button></p>
+    
+    <script>
+        let contador = document.getElementById("numero");
+        let adicionar = document.getElementById("incrementar");
+        let diminuir = document.getElementById("decrementar");
+        let zerarNumero = document.getElementById("zerar");
+        let valor = 0;
+
+        adicionar.addEventListener("click", incrementar);
+        diminuir.addEventListener("click", decrementar);
+        zerarNumero.addEventListener("click", zerar);
+
+        function incrementar(){
+            contador.textContent = ++valor;
+            verificarCor();
+        }
+
+        function decrementar(){
+            if(valor !== -10){
+                contador.textContent = --valor;
+                verificarCor();
+            }
+            
+        }
+
+        function zerar(){
+            valor = 0;
+            contador.textContent = valor;
+            verificarCor();
+        }
+        
+        function verificarCor(){
+            if(valor < 0 ){
+                contador.style.color = "red";
+                
+            } else if ( valor === 0){
+                contador.style.color = "black"
+                 
+            } else {
+                contador.style.color = "green";
+                
+            }
+        }   
+
+
+
+    </script>
+</body>
+</html>

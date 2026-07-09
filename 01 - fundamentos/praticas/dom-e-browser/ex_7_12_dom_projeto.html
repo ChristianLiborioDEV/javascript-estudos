@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom básico</title>
+</head>
+<body>
+    <div id="corpoPrincipal">
+        <p id="contador">
+            Tarefas: 0 total | 0 concluidas
+        </p>
+        <p>
+            <input type="text" name="txtEntrada" id="txtID" placeholder="Digite o nome da Tarefa"> 
+            <button id="add">Adicionar</button>
+        </p>
+        <p>
+            <button id="save">Salvar lista</button>
+        </p>
+        <ul id="listaTarefas"></ul>
+    </div>
+
+    <script>
+
+
+        let entrada = document.getElementById("txtID");
+        let botao = document.getElementById("add");
+        let lista = document.getElementById("listaTarefas");
+        let contador = document.getElementById("contador");
+        let botaoSalvar = document.getElementById("save")
+        let contagemTarefas = 0;
+        let contagemConcluidas = 0;
+        let tarefas = [];
+
+
+        botao.addEventListener("click", addTarefa);
+        entrada.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            addTarefa();
+         }
+        });
+
+        botaoSalvar.addEventListener("click", salvarAtual);
+        window.addEventListener("load", reload);
+
+
+            function criarItem(texto, concluida){
+                    let item = document.createElement("li");
+                    let indice = tarefas.length;
+                    tarefas.push({ texto: texto, concluida: concluida });
+                    
+                    item.textContent = texto;
+                       
+                    
+                    let botaoConcluir = document.createElement("button");
+                    botaoConcluir.textContent = "Concluir";
+                    if(concluida) {
+                                item.style.textDecoration = "line-through";
+                                botaoConcluir.disabled = true;
+                        }
+                    botaoConcluir.addEventListener("click", function(){ 
+                    item.style.textDecoration = "line-through";
+                    botaoConcluir.style.display = "none";
+                    contagemConcluidas++;
+                    contador.textContent = `Tarefas: ${contagemTarefas} total | ${contagemConcluidas} concluidas`
+                    tarefas[indice].concluida = true;
+                    })
+
+
+                    let botaoRemover = document.createElement("button");
+                    botaoRemover.textContent = "Remover";
+                    botaoRemover.addEventListener("click", function() {
+                    item.remove();
+                    });
+
+                    item.appendChild(botaoConcluir);
+                    item.appendChild(botaoRemover);
+                    lista.appendChild(item);
+            }
+
+
+            function addTarefa(){
+                let textoEntrada = entrada.value;
+                if(textoEntrada.trim() !== ""){
+                    criarItem(textoEntrada);
+                    entrada.value ="";
+                    entrada.focus();
+                    contagemTarefas++;
+                    contador.textContent = `Tarefas: ${contagemTarefas} total | ${contagemConcluidas}`
+                } else {
+                    alert("Entrada vazia");
+                }
+                    
+        }
+
+        function salvarAtual(){
+            localStorage.setItem("tarefas", JSON.stringify(tarefas));
+        }
+
+        function reload(){
+            let salvas = JSON.parse(localStorage.getItem("tarefas"));
+            if(salvas) {
+            salvas.forEach(t => criarItem(t.texto, t.concluida));}
+        }
+    </script>
+</body>
+</html>

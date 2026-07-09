@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom básico</title>
+</head>
+<body>
+    <input type="text" id="busca" placeholder="Buscar...">
+        <ul id="lista">
+            <li>Ana Silva</li>
+            <li>Bruno Costa</li>
+            <li>Carlos Mendes</li>
+            <li>Diana Souza</li>
+            <li>Eduardo Lima</li>
+        </ul>
+
+        <script>
+            let busca = document.getElementById("busca");
+            
+            let lista = document.getElementById("lista");
+            let item = lista.querySelectorAll("li");
+
+            busca.addEventListener("keyup", function() { 
+                verificarList();
+            });
+
+            function verificarList(){
+                let filtro = busca.value.toLowerCase();
+                item.forEach(function(item) {
+                item.style.display = item.textContent.toLowerCase().includes(filtro) ? "" : "none";
+                  });
+}
+ 
+        </script>
+
+
+</body>
+</html>

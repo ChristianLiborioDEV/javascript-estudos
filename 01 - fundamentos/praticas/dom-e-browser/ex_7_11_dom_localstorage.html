@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Básico</title>
+</head>
+<body>
+    <div>
+        <input type="text" name="txt" id="txtID">
+        <p><button id="salvarInfo">Salvar</button>
+        <button id="carregarInfo">Carregar</button>
+        <button id="limparInfo">Limpar</button>
+        </p>
+    </div>
+    <div id="resultado">
+
+    </div>
+    <script>
+        let informacao = document.getElementById("txtID");
+        let botaoSalvar = document.getElementById("salvarInfo");
+        let botaoCarregar = document.getElementById("carregarInfo");
+        let botaoLimpar = document.getElementById("limparInfo");
+        let res = document.getElementById("resultado");
+
+        botaoSalvar.addEventListener("click", salvarFunc);
+        botaoCarregar.addEventListener("click", carregarFunc);
+        botaoLimpar.addEventListener("click", limparFunc);
+
+        function salvarFunc(){
+            let infoSalva = informacao.value;
+            localStorage.setItem("texto", infoSalva);
+            informacao.value = "";
+            
+        }
+
+        function carregarFunc(){
+           let valor =  localStorage.getItem("texto");
+           if(valor === null || valor.trim() === ""){
+                res.textContent = "Nada salvo ainda";
+           } else {
+                res.textContent = valor;
+           }       
+
+        }
+
+        function limparFunc(){
+            localStorage.removeItem("texto");
+            res.textContent = "";
+        }
+    </script>
+    
+</body>
+</html>

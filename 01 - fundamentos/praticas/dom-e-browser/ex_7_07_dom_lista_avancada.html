@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Básico</title>
+</head>
+<body>
+    <input type="text" id="tarefaInput" placeholder="Nova tarefa">
+    <button id="botaoAdicionar">Adicionar</button>
+    <ul id="listaTarefas"></ul>
+
+
+    <script>
+        let botao = document.getElementById("botaoAdicionar");
+        let lista = document.getElementById("listaTarefas");
+        let tarefa = document.getElementById("tarefaInput");
+        botao.addEventListener("click", addTarefa);
+
+
+
+
+        function addTarefa(){
+            
+            if(tarefa.value.trim() !== ""){  
+                let item = document.createElement("li");
+                item.textContent = tarefa.value;
+
+                let botaoConcluir = document.createElement("button");
+                botaoConcluir.textContent = "Concluir";
+                botaoConcluir.addEventListener("click", function(){ 
+                item.style.textDecoration = "line-through";
+                botaoConcluir.style.display = "none";
+                })
+
+
+                let botaoRemover = document.createElement("button");
+                botaoRemover.textContent = "Remover";
+                botaoRemover.addEventListener("click", function() {
+                item.remove();
+                });
+
+                item.appendChild(botaoConcluir);
+                item.appendChild(botaoRemover);
+                lista.appendChild(item);
+                tarefa.value =""
+                tarefa.focus();
+            } 
+        }
+    </script>
+</body>
+</html>
+
+<!-- Uma melhoria interessante para pensar: o botão "Concluir" continua aparecendo mesmo depois que a tarefa já foi concluída. 
+Como você faria para esconder ou desabilitar o botão após o clique?
+
+Duas opções simples:
+Esconder:
+botaoConcluir.style.display = "none";
+
+Desabilitar: 
+botaoConcluir.disabled = true;
+
+disabled é um atributo HTML — o botão fica cinza e não responde a cliques. 
+É o mais adequado para esse caso -->
